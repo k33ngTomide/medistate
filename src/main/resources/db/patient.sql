@@ -1,0 +1,10 @@
+insert into patient (id, full_name, email, phone_number, date_of_birth, gender, address) values (1, 'Shelby Cocklin', 'scocklin0@wordpress.com', '9701530990', '2023-04-06 19:03:43', 'Female', 'Apt 1516');
+insert into patient (id, full_name, email, phone_number, date_of_birth, gender, address) values (2, 'Bennett Iacopini', 'biacopini1@diigo.com', '4042391811', '2023-10-29 04:45:36', 'Male', '2nd Floor');
+insert into patient (id, full_name, email, phone_number, date_of_birth, gender, address) values (3, 'Mady Vost', 'mvost2@cbslocal.com', '6929510956', '2023-04-13 12:53:32', 'Female', 'Apt 1168');
+insert into patient (id, full_name, email, phone_number, date_of_birth, gender, address) values (4, 'Ferdie Scadding', 'fscadding3@dailymail.co.uk', '4937895419', '2023-08-25 07:26:15', 'Male', 'Apt 343');
+insert into patient (id, full_name, email, phone_number, date_of_birth, gender, address) values (5, 'Shanta Jewess', 'sjewess4@shinystat.com', '7144810113', '2023-08-08 21:29:45', 'Female', 'Suite 89');
+insert into patient (id, full_name, email, phone_number, date_of_birth, gender, address) values (6, 'Britt Gino', 'bgino5@amazonaws.com', '7131909739', '2023-10-10 17:05:32', 'Male', 'Room 1633');
+insert into patient (id, full_name, email, phone_number, date_of_birth, gender, address) values (7, 'Calley Stubs', 'cstubs6@pen.io', '8348442712', '2023-06-22 11:31:57', 'Female', 'PO Box 53317');
+insert into patient (id, full_name, email, phone_number, date_of_birth, gender, address) values (8, 'Roderic Orr', 'rorr7@zimbio.com', '8914669614', '2023-12-11 21:46:13', 'Male', 'Suite 77');
+insert into patient (id, full_name, email, phone_number, date_of_birth, gender, address) values (9, 'Staford Moyler', 'smoyler8@privacy.gov.au', '6423863430', '2023-09-04 18:17:04', 'Male', 'Suite 61');
+insert into patient (id, full_name, email, phone_number, date_of_birth, gender, address) values (10, 'Ginelle Okroy', 'gokroy9@abc.net.au', '5388173841', '2023-11-10 11:45:52', 'Female', '13th Floor');
