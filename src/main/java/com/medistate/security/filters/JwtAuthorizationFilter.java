@@ -56,13 +56,13 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         UserDetails userDetails = jwtService.extractUserDetailsFrom(token);
         Authentication authentication =
                 new UsernamePasswordAuthenticationToken(userDetails.getUsername(),
-                        "",
+                        userDetails.getPassword(),
                         userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
     public Set<String> getPublicEndpoints() {
-        return Set.of("/login");
+        return Set.of("api/v1/hospital/login");
     }
 
 }

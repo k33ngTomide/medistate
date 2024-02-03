@@ -2,6 +2,8 @@ package com.medistate.security;
 
 import com.medistate.data.models.Hospital;
 import com.medistate.data.repositories.HospitalRepository;
+import com.medistate.exceptions.HospitalNotFoundException;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Optional;
 
 @Configuration
+@AllArgsConstructor
 public class ProviderConfig {
     private HospitalRepository hospitalRepository;
 
@@ -26,9 +29,11 @@ public class ProviderConfig {
     public UserDetailsService userDetailsService() {
         return new UserDetailsService() {
             @Override
-            public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-                Optional<Hospital> foundHospital = hospitalRepository.findHospitalByHospitalEmail(email);
-                Hospital hospital = foundHospital.orElseThrow();
+            public UserDetails loadUserByUsername(String hospitalName) throws UsernameNotFoundException {
+                Optional<Hospital> foundHospital = hospitalRepository.findHospitalByHospitalName(hospitalName);
+                if(foundHospital.isEmpty()) throw  new HospitalNotFoundException("Hospital Not Found");
+                Hospital hospital = foundHospital.get();
+                System.out.println(hospital.getHospitalName());
                 return new SecureUser(hospital);
 
             }

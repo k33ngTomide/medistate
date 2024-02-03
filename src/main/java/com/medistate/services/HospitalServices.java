@@ -10,6 +10,7 @@ import com.medistate.exceptions.HospitalNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -24,10 +25,12 @@ public class HospitalServices implements HospitalUserServices {
     private HospitalRepository hospitalRepository;
     private DoctorServices doctorServices;
     private PatientServices patientServices;
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public HospitalRegisterResponse registerHospital(HospitalRegisterRequest registerRequest) {
         Hospital hospital = mapper.map(registerRequest, Hospital.class);
+        hospital.setPassword(passwordEncoder.encode(hospital.getPassword()));
         hospitalRepository.save(hospital);
 
         HospitalRegisterResponse response = new HospitalRegisterResponse();
