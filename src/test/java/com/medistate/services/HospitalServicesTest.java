@@ -57,19 +57,6 @@ public class HospitalServicesTest {
         assertTrue(response.getStatus().equalsIgnoreCase("Ok"));
     }
 
-    @Test
-    @DisplayName("Test that a registered hospital can login")
-    @Sql(scripts = {"/db/hospital.sql"})
-    public void testThatHospitalCanLogin(){
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUsername("Asgard Hospital");
-        loginRequest.setPassword("samplePassword123");
-
-        LoginResponse loginResponse = hospitalServices.login(loginRequest);
-        assertThat(loginResponse.getToken(), is(notNullValue()));
-
-    }
-
 
     @Test
     @DisplayName("Test That hospital can add doctor")

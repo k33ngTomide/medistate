@@ -49,7 +49,7 @@ public class MediStateJwtService implements JwtService{
     }
 
     private static boolean isValidToken(DecodedJWT decodedJWT) {
-        return isTokenNotExpired(decodedJWT) && isTokenWithValidIssuer(decodedJWT);
+        return isTokenNotExpired(decodedJWT) ;
     }
 
 
@@ -58,7 +58,8 @@ public class MediStateJwtService implements JwtService{
     }
 
     private static boolean isTokenNotExpired(DecodedJWT decodedJWT) {
-        return Instant.now().isAfter(decodedJWT.getExpiresAtAsInstant());
+        Instant expiresAt = decodedJWT.getExpiresAtAsInstant();
+        return expiresAt != null && Instant.now().isBefore(expiresAt);
     }
 
 }

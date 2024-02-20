@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,6 +26,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import java.util.Arrays;
 import java.util.Optional;
 
+import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 
 @Configuration
@@ -44,12 +46,18 @@ public class SecurityConfig {
                     .sessionManagement(c -> c.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                     .addFilterAt(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
                     .addFilterBefore(new JwtAuthorizationFilter(jwtService), authenticationFilter.getClass())
-                    .authorizeHttpRequests(c -> c.requestMatchers(POST, "/api/v1/hospital/login", "/api/v1/hospital/register")
+                    .authorizeHttpRequests(c -> c.requestMatchers(POST,
+                                    "/api/v1/hospital/login",
+                                    "/api/v1/hospital/register"
+                                    )
                             .permitAll()
-                            .anyRequest().authenticated()).build();
+                            .requestMatchers(POST, "/google/register").permitAll() // Permit GET request to /google/register
+                            .anyRequest().authenticated())
+                    .build();
         } catch (Exception e){
             System.out.println(e.getMessage());
             return null;
         }
     }
+
 }

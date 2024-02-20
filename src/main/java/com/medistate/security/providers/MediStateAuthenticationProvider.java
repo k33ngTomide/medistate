@@ -28,7 +28,6 @@ public class MediStateAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        System.out.println("i got to the Auth Provider");
         String username = authentication.getPrincipal().toString();
         System.out.println(username);
 
