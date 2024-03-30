@@ -1,5 +1,7 @@
-package com.medistate.data.models;
+package com.medistate.hopsital.data.model;
 
+import com.medistate.doctor.data.models.Doctor;
+import com.medistate.patient.data.models.Patient;
 import jakarta.persistence.*;
 
 import jakarta.validation.constraints.Email;

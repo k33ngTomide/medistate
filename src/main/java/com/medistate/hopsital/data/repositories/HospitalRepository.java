@@ -1,7 +1,7 @@
-package com.medistate.data.repositories;
+package com.medistate.hopsital.data.repositories;
 
-import com.medistate.data.models.Doctor;
-import com.medistate.data.models.Hospital;
+import com.medistate.doctor.data.models.Doctor;
+import com.medistate.hopsital.data.model.Hospital;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

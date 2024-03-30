@@ -1,11 +1,12 @@
 package com.medistate.services;
 
-import com.medistate.data.models.Patient;
-import com.medistate.data.repositories.DoctorRepository;
-import com.medistate.data.repositories.HospitalRepository;
-import com.medistate.data.repositories.PatientRepository;
+import com.medistate.patient.data.models.Patient;
+import com.medistate.doctor.data.repositories.DoctorRepository;
+import com.medistate.hopsital.data.repositories.HospitalRepository;
+import com.medistate.patient.data.repositories.PatientRepository;
 import com.medistate.dtos.request.*;
 import com.medistate.dtos.response.*;
+import com.medistate.hopsital.services.HospitalUserServices;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

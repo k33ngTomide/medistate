@@ -1,12 +1,14 @@
-package com.medistate.services;
+package com.medistate.hopsital.services;
 
-import com.medistate.data.models.Doctor;
-import com.medistate.data.models.Hospital;
-import com.medistate.data.models.Patient;
-import com.medistate.data.repositories.HospitalRepository;
+import com.medistate.doctor.data.models.Doctor;
+import com.medistate.hopsital.data.model.Hospital;
+import com.medistate.patient.data.models.Patient;
+import com.medistate.hopsital.data.repositories.HospitalRepository;
 import com.medistate.dtos.request.*;
 import com.medistate.dtos.response.*;
 import com.medistate.exceptions.HospitalNotFoundException;
+import com.medistate.doctor.services.DoctorServices;
+import com.medistate.patient.services.PatientServices;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;

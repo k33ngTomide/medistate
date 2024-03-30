@@ -1,7 +1,7 @@
 package com.medistate.utils;
 
-import com.medistate.data.models.Doctor;
-import com.medistate.data.models.Hospital;
+import com.medistate.doctor.data.models.Doctor;
+import com.medistate.hopsital.data.model.Hospital;
 import com.medistate.dtos.request.AddDoctorRequest;
 import com.medistate.dtos.response.AddDoctorResponse;
 
