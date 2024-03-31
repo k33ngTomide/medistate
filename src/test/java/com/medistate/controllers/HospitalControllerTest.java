@@ -28,7 +28,7 @@ public class HospitalControllerTest {
 
 
     @Test
-    @DisplayName("Test for hospital register enpoint with valid credentials")
+    @DisplayName("Test for hospital register endpoint with valid credentials")
     public void testRegister() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         HospitalRegisterRequest registerRequest = new HospitalRegisterRequest();

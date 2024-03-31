@@ -32,20 +32,13 @@ public class MedistateAuthenticationFilter extends UsernamePasswordAuthenticatio
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request,
                                             HttpServletResponse response) throws AuthenticationException {
-        System.out.println("i got to the Auth Manager");
 
         try(InputStream stream  = request.getInputStream()){
-            System.out.println("Inputstream place");
             LoginRequest loginRequest = mapper.readValue(stream, LoginRequest.class);
-            System.out.println("So where in the world");
             String hospitalName = loginRequest.getUsername();
             String password = loginRequest.getPassword();
-            System.out.println("There it happened");
             Authentication authentication = new UsernamePasswordAuthenticationToken(hospitalName, password);
-            System.out.println("i was given an AUTH to work with");
-
             Authentication authenticationResult = authenticationManager.authenticate(authentication);
-            System.out.println("i got to the Auth Manager and Auth xxfull");
 
 
             SecurityContext context = SecurityContextHolder.getContext();
