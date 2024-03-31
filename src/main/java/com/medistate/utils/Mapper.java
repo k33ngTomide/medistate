@@ -1,9 +1,11 @@
 package com.medistate.utils;
 
 import com.medistate.doctor.data.models.Doctor;
+import com.medistate.dtos.request.AddHospitalAdminRequest;
 import com.medistate.hopsital.data.model.Hospital;
 import com.medistate.dtos.request.AddDoctorRequest;
 import com.medistate.dtos.response.AddDoctorResponse;
+import com.medistate.hospitalAdmin.data.models.HospitalAdmin;
 
 import java.util.List;
 
@@ -27,5 +29,14 @@ public class Mapper {
         addDoctorResponse.setStatus("ok");
         addDoctorResponse.setTotalNumberOfDoctors(doctors.size() + "");
         return addDoctorResponse;
+    }
+
+    public static HospitalAdmin map (AddHospitalAdminRequest addAdminRequest,Hospital hospital) {
+        HospitalAdmin hospitalAdmin = new HospitalAdmin();
+        hospitalAdmin.setName(addAdminRequest.getAdminName());
+        hospitalAdmin.setEmail(addAdminRequest.getHospitalAdminEmail());
+        hospitalAdmin.setPhoneNumber(addAdminRequest.getPhoneNumber());
+        hospitalAdmin.setHospital(hospital);
+        return hospitalAdmin;
     }
 }

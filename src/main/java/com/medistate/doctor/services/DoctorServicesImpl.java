@@ -30,7 +30,6 @@ public class DoctorServicesImpl implements DoctorServices{
         String hashedPassword = passwordEncoder.encode(addDoctorRequest.getPassword());
         doctor.setPassword(hashedPassword);
 
-
         return doctorRepository.save(doctor);
 
     }
