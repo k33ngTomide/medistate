@@ -43,6 +43,6 @@ public class HospitalAdmin  {
     @Pattern(regexp = "^\\d{10}$", message = "Invalid phone number format")
     private String phoneNumber;
 
-    @ManyToOne
+    @OneToOne
     private Hospital hospital;
 }

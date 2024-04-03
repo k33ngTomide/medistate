@@ -15,13 +15,15 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-<<<<<<< HEAD
-=======
-import java.util.Arrays;
-import java.util.Optional;
 
-import static org.springframework.http.HttpMethod.GET;
->>>>>>> eb55644d56b846b98b432bea0e61b8adf10be174
+
+//<<<<<<< HEAD
+//=======
+//import java.util.Arrays;
+//import java.util.Optional;
+//
+//import static org.springframework.http.HttpMethod.GET;
+//>>>>>>> eb55644d56b846b98b432bea0e61b8adf10be174
 import static org.springframework.http.HttpMethod.POST;
 
 @Configuration

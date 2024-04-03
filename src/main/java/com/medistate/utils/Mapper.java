@@ -33,6 +33,7 @@ public class Mapper {
 
     public static HospitalAdmin map (AddHospitalAdminRequest addAdminRequest,Hospital hospital) {
         HospitalAdmin hospitalAdmin = new HospitalAdmin();
+
         hospitalAdmin.setName(addAdminRequest.getAdminName());
         hospitalAdmin.setEmail(addAdminRequest.getHospitalAdminEmail());
         hospitalAdmin.setPhoneNumber(addAdminRequest.getPhoneNumber());

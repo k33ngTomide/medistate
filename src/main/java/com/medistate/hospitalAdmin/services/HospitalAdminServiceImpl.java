@@ -2,7 +2,9 @@ package com.medistate.hospitalAdmin.services;
 
 import com.medistate.dtos.response.HospitalAdminRespond;
 import com.medistate.exceptions.AdminExistsException;
+import com.medistate.exceptions.HospitalNotFoundException;
 import com.medistate.hopsital.data.model.Hospital;
+import com.medistate.hopsital.data.repositories.HospitalRepository;
 import com.medistate.hospitalAdmin.data.models.HospitalAdmin;
 import com.medistate.dtos.request.AddHospitalAdminRequest;
 import com.medistate.dtos.request.AddPatientRequest;
@@ -18,14 +20,21 @@ import static com.medistate.utils.Mapper.map;
 public class HospitalAdminServiceImpl  implements HospitalAdminService{
 
     private HospitalAdminRepository hospitalAdminRepository;
+
+    private HospitalRepository hospitalRepository;
+
     private PasswordEncoder passwordEncoder;
+
     @Override
     public  HospitalAdminRespond  registerHospitalAdmin(AddHospitalAdminRequest addHospitalAdminRequest, Hospital hospital) {
 
-        validateAdmin(addHospitalAdminRequest.getHospitalAdminEmail());
+        validateHospitalName(hospital.getHospitalName());
+        validateAdminName(addHospitalAdminRequest.getHospitalAdminEmail());
         HospitalAdmin hospitalAdmin = map(addHospitalAdminRequest, hospital);
         String hashPassword = passwordEncoder.encode(addHospitalAdminRequest.getPassword());
         hospitalAdmin.setPassword(hashPassword);
+
+
         hospitalAdminRepository.save(hospitalAdmin);
 
         return registrationMessage();
@@ -37,18 +46,23 @@ public class HospitalAdminServiceImpl  implements HospitalAdminService{
         return null;
     }
 
-    private void validateAdmin(String HospitalAdmin)  {
-        if (hospitalAdminRepository.findByEmail(HospitalAdmin).isPresent()) {
+    private void validateAdminName(String HospitalAdmin)  {
+        if (hospitalAdminRepository.findByEmail(HospitalAdmin).isPresent() ) {
             throw new AdminExistsException("Admin already exists");
         }
     }
+    private void validateHospitalName(String hospitalName) {
+     if (hospitalRepository.findHospitalByHospitalName(hospitalName).isEmpty()) {
+         throw new HospitalNotFoundException("Hospital not found");
+     }
+    }
     private HospitalAdminRespond registrationMessage(){
         HospitalAdminRespond hospitalAdminRespond = new HospitalAdminRespond();
-        hospitalAdminRespond.setStatus("ok");
+        hospitalAdminRespond.setStatus("OK");
         hospitalAdminRespond.setMessage("Admin Added Successfully");
 //        hospitalAdminRespond.setMessage( "Dear" + addHospitalAdminRequest.getAdminName() + "is now an admin of"
 //                + hospital.getHospitalName() +"/n Kindly Check your mail to valid your account");
-
+        return  hospitalAdminRespond;
     }
 
 }

@@ -23,4 +23,6 @@ public interface HospitalRepository extends JpaRepository<Hospital, Long> {
                                   @Param("hospitalEmail") String hospitalEmail);
 
     Optional<Hospital> findHospitalByHospitalName(String hospitalName);
+
+    Hospital findByHospitalName(String hospitalName);
 }
