@@ -26,6 +26,11 @@ public class Patient {
     @Email(message = "Invalid email format")
     private String email;
 
+//    @NotEmpty(message = "Password cannot be empty")
+    @Size(min = 8, message = "Password must be at least 8 characters long")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-zA-Z]).*$", message = "Password must contain at least one letter and one digit")
+    private String password;
+
     @NotEmpty(message = "Phone number cannot be blank")
     @Pattern(regexp = "^\\d{10}$", message = "Invalid phone number format")
     private String phoneNumber;

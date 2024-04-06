@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class AddHospitalAdminRequest {
-    private String AdminName;
-    private String HospitalAdminEmail;
+    private String adminName;
+    private String hospitalAdminEmail;
     private String password;
     private String address;
     private String phoneNumber;
