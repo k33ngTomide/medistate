@@ -7,7 +7,7 @@ import com.medistate.hopsital.data.model.Hospital;
 import com.medistate.hospitalAdmin.data.models.HospitalAdmin;
 import com.medistate.dtos.request.AddHospitalAdminRequest;
 import com.medistate.dtos.request.AddPatientRequest;
-import lombok.AllArgsConstructor;
+
 
 public interface HospitalAdminService {
 

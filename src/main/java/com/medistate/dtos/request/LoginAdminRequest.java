@@ -1,6 +1,5 @@
 package com.medistate.dtos.request;
 
-import jakarta.jms.JMSPasswordCredential;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;

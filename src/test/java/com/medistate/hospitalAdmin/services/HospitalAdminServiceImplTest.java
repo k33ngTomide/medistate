@@ -142,7 +142,6 @@
 package com.medistate.hospitalAdmin.services;
 
 import com.medistate.dtos.request.AddHospitalAdminRequest;
-import com.medistate.dtos.request.AddPatientRequest;
 import com.medistate.dtos.request.HospitalRegisterRequest;
 import com.medistate.dtos.request.LoginAdminRequest;
 import com.medistate.dtos.response.HospitalAdminRespond;

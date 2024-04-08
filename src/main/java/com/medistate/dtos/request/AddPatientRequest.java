@@ -1,13 +1,10 @@
 package com.medistate.dtos.request;
 
-import com.medistate.data.models.Gender;
-import com.medistate.data.models.MedicalHistory;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
-import java.time.LocalDate;
-import java.util.List;
+
 
 @Data
 public class AddPatientRequest {
