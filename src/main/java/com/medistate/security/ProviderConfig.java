@@ -1,7 +1,7 @@
 package com.medistate.security;
 
-import com.medistate.data.models.Hospital;
-import com.medistate.data.repositories.HospitalRepository;
+import com.medistate.hopsital.data.model.Hospital;
+import com.medistate.hopsital.data.repositories.HospitalRepository;
 import com.medistate.exceptions.HospitalNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;

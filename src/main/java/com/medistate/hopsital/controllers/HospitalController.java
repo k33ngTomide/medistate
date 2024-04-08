@@ -1,9 +1,8 @@
-package com.medistate.controllers;
+package com.medistate.hopsital.controllers;
 
 import com.medistate.dtos.request.HospitalRegisterRequest;
 import com.medistate.dtos.response.HospitalRegisterResponse;
-import com.medistate.services.HospitalServices;
-import jakarta.ws.rs.GET;
+import com.medistate.hopsital.services.HospitalServices;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;

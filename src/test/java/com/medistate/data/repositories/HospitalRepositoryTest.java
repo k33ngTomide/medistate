@@ -1,5 +1,6 @@
 package com.medistate.data.repositories;
 
+import com.medistate.hopsital.data.repositories.HospitalRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

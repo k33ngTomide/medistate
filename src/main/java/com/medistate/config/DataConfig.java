@@ -17,10 +17,10 @@ public class DataConfig {
     @Value("${DATABASE_NAME}")
     private String databaseName;
 
-    @Value("${PASSWORD}")
+    @Value("${DATABASE_PASSWORD}")
     private String databasePassword;
 
-    @Value("${USERNAME}")
+    @Value("${DATABASE_USERNAME}")
     private String databaseUsername;
 
 

@@ -1,5 +1,6 @@
-package com.medistate.data.models;
+package com.medistate.doctor.data.models;
 
+import com.medistate.hopsital.data.model.Hospital;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -10,7 +11,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.List;
 
 @Entity
 @Setter
@@ -49,4 +49,7 @@ public class Doctor {
 
     @ManyToOne
     private Hospital hospital;
+    private boolean isEnabled;
+
+
 }

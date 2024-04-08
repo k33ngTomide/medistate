@@ -1,11 +1,12 @@
 package com.medistate.data.models;
 
+import com.medistate.patient.data.models.Patient;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Map;
+
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 

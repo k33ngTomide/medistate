@@ -1,5 +1,8 @@
-package com.medistate.data.models;
+package com.medistate.patient.data.models;
 
+import com.medistate.data.models.Gender;
+import com.medistate.data.models.MedicalHistory;
+import com.medistate.data.models.PackageType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
@@ -23,6 +26,11 @@ public class Patient {
     @Email(message = "Invalid email format")
     private String email;
 
+//    @NotEmpty(message = "Password cannot be empty")
+    @Size(min = 8, message = "Password must be at least 8 characters long")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-zA-Z]).*$", message = "Password must contain at least one letter and one digit")
+    private String password;
+
     @NotEmpty(message = "Phone number cannot be blank")
     @Pattern(regexp = "^\\d{10}$", message = "Invalid phone number format")
     private String phoneNumber;
@@ -41,7 +49,14 @@ public class Patient {
     @NotEmpty(message = "Patient blood group cannot be empty")
     private String bloodGroup;
 
+    @NotEmpty(message = "Patient genotype cannot be empty")
+    private String genotype;
+
     private LocalDate dateRegistered = LocalDate.now();
+
+    @NotNull(message = "PackageType cannot be null")
+    @Enumerated(EnumType.STRING)
+    private PackageType patientPackage;
 
     @OneToMany
     private List<MedicalHistory> medicalHistory;

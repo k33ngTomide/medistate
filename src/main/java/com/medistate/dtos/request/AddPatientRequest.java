@@ -1,13 +1,10 @@
 package com.medistate.dtos.request;
 
-import com.medistate.data.models.Gender;
-import com.medistate.data.models.MedicalHistory;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
-import java.time.LocalDate;
-import java.util.List;
+
 
 @Data
 public class AddPatientRequest {
@@ -17,6 +14,12 @@ public class AddPatientRequest {
 
     @Email(message = "Invalid email format")
     private String email;
+
+    @NotEmpty(message = "Password cannot be empty")
+    @Size(min = 8, message = "Password must be at least 8 characters long")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-zA-Z]).*$", message = "Password must contain at least one letter and one digit")
+    private String password;
+
 
     @NotEmpty(message = "Phone number cannot be blank")
     @Pattern(regexp = "^\\d{10}$", message = "Invalid phone number format")
