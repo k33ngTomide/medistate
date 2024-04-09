@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface HospitalAdminRepository  extends JpaRepository<HospitalAdmin, Long> {
     Optional <HospitalAdmin> findByEmail(String hospitalAdminEmail);
 
+    HospitalAdmin findByName(String adminName);
 }

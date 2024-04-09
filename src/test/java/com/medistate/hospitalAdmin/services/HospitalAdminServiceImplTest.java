@@ -142,8 +142,10 @@
 package com.medistate.hospitalAdmin.services;
 
 import com.medistate.dtos.request.AddHospitalAdminRequest;
+import com.medistate.dtos.request.AddPatientRequest;
 import com.medistate.dtos.request.HospitalRegisterRequest;
 import com.medistate.dtos.request.LoginAdminRequest;
+import com.medistate.dtos.response.AddPatientResponse;
 import com.medistate.dtos.response.HospitalAdminRespond;
 import com.medistate.dtos.response.HospitalRegisterResponse;
 import com.medistate.exceptions.AdminExistException;
@@ -322,41 +324,50 @@ class HospitalAdminServiceImplTest {
         loginAdminRequest.setEmail(hospitalAdmin.getHospitalAdminEmail());
         loginAdminRequest.setPassword("wrongPassword");
 
-
-
         assertThrows(InvalidCredentialsException.class, () -> hospitalAdminService.loginHospitalAdmin(loginAdminRequest));
     }
 
-//    @Test
-//    @DisplayName("Hospital Admin can create accounts for patient")
-//    void testHospitalAdminCanCreateAccountForPatient() {
-//        HospitalRegisterRequest registerRequest = createHospitalRegisterRequest();
-//        HospitalRegisterResponse response = hospitalServices.registerHospital(registerRequest);
-//        assertThat(response, is(notNullValue()));
-//        assertTrue(response.getStatus().equalsIgnoreCase("Ok"));
-//        Hospital hospital = hospitalRepository.findByHospitalName(registerRequest.getHospitalName());
-//
-//        AddHospitalAdminRequest hospitalAdmin = createHospitalAdminRequest();
-//        HospitalAdminRespond responseForAdmin = hospitalAdminService.registerHospitalAdmin(hospitalAdmin, hospital);
-//        assertThat(responseForAdmin, is(notNullValue()));
-//        assertTrue(responseForAdmin.getStatus().equalsIgnoreCase("Ok"));
-//
-//        AddPatientRequest addPatientRequest = new AddPatientRequest();
-//        addPatientRequest.setEmail("gracejaames@gmail.com");
-//        addPatientRequest.setFullName("Grace James");
-//        addPatientRequest.setBloodGroup("");
-//        addPatientRequest.setGender("Female");
-//        addPatientRequest.setHospitalName("Vigor Hospital");
-//
-//
-//        hospitalAdminService.registerPatient(addPatientRequest);
-//
-//
-//
-//
-//
-//
-//    }
+    @Test
+    @DisplayName("Hospital Admin can create accounts for patient")
+    void testHospitalAdminCanCreateAccountForPatient() {
+        HospitalRegisterRequest registerRequest = createHospitalRegisterRequest();
+        HospitalRegisterResponse response = hospitalServices.registerHospital(registerRequest);
+        assertThat(response, is(notNullValue()));
+        assertTrue(response.getStatus().equalsIgnoreCase("Ok"));
+        Hospital hospital = hospitalRepository.findByHospitalName(registerRequest.getHospitalName());
+
+        AddHospitalAdminRequest hospitalAdmin = createHospitalAdminRequest();
+        HospitalAdminRespond responseForAdmin = hospitalAdminService.registerHospitalAdmin(hospitalAdmin, hospital);
+        assertThat(responseForAdmin, is(notNullValue()));
+        assertTrue(responseForAdmin.getStatus().equalsIgnoreCase("Ok"));
+
+
+        LoginAdminRequest loginAdminRequest = new LoginAdminRequest();
+        loginAdminRequest.setEmail(hospitalAdmin.getHospitalAdminEmail());
+        loginAdminRequest.setPassword(hospitalAdmin.getPassword());
+
+        HospitalAdmin hospitalAdminLogin = hospitalAdminService.loginHospitalAdmin(loginAdminRequest);
+        assertTrue(hospitalAdminLogin.getName().equalsIgnoreCase("Joy"));
+
+
+        AddPatientRequest addPatientRequest = new AddPatientRequest();
+        addPatientRequest.setEmail("gracejaames@gmail.com");
+        addPatientRequest.setFullName("Grace James");
+        addPatientRequest.setBloodGroup("");
+        addPatientRequest.setGender("FEMALE");
+        addPatientRequest.setPatientPackage("HMO");
+        addPatientRequest.setHospitalName("Vigor Hospital");
+
+        HospitalAdmin admin = hospitalAdminRepository.findByName(hospitalAdmin.getAdminName());
+
+
+       AddPatientResponse patientResponse = hospitalAdminService.registerPatient(addPatientRequest, admin);
+
+
+        assertThat(patientResponse, is(notNullValue()));
+        assertTrue(patientResponse.getStatus().equalsIgnoreCase("Ok"));
+
+    }
 
 
 }

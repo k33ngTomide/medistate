@@ -1,11 +1,15 @@
 package com.medistate.utils;
 
+import com.medistate.data.models.Gender;
+import com.medistate.data.models.PackageType;
 import com.medistate.doctor.data.models.Doctor;
 import com.medistate.dtos.request.AddHospitalAdminRequest;
+import com.medistate.dtos.request.AddPatientRequest;
 import com.medistate.hopsital.data.model.Hospital;
 import com.medistate.dtos.request.AddDoctorRequest;
 import com.medistate.dtos.response.AddDoctorResponse;
 import com.medistate.hospitalAdmin.data.models.HospitalAdmin;
+import com.medistate.patient.data.models.Patient;
 
 import java.util.List;
 
@@ -29,6 +33,23 @@ public class Mapper {
         addDoctorResponse.setStatus("ok");
         addDoctorResponse.setTotalNumberOfDoctors(doctors.size() + "");
         return addDoctorResponse;
+    }
+    public static Patient map(AddPatientRequest patientRequest, HospitalAdmin admin) {
+        Patient patient = new Patient();
+
+        patient.setFullName(patientRequest.getFullName());
+        patient.setGender(Gender.valueOf(patientRequest.getGender()));
+        patient.setDateOfBirth(patientRequest.getDateOfBirth());
+        patient.setPassword(patientRequest.getPassword());
+        patient.setPhoneNumber(patientRequest.getPhoneNumber());
+        patient.setAddress(patientRequest.getAddress());
+        patient.setBloodGroup(patientRequest.getBloodGroup());
+        patient.setGenotype(patientRequest.getGenotype());
+        patient.setWeight(patientRequest.getWeight());
+        patient.setEmail(patientRequest.getEmail());
+        patient.setPatientPackage(PackageType.valueOf(patientRequest.getPatientPackage()));
+
+        return patient;
     }
 
     public static HospitalAdmin map (AddHospitalAdminRequest addAdminRequest,Hospital hospital) {

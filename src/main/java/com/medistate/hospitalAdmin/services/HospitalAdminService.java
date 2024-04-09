@@ -15,7 +15,7 @@ public interface HospitalAdminService {
 
  HospitalAdmin loginHospitalAdmin(LoginAdminRequest loginAdminRequest);
 
- AddPatientResponse  registerPatient (AddPatientRequest addPatientRequest);
+ AddPatientResponse  registerPatient (AddPatientRequest addPatientRequest, HospitalAdmin admin);
 
 
 
