@@ -58,6 +58,9 @@ public class Patient {
     @Enumerated(EnumType.STRING)
     private PackageType patientPackage;
 
+    @NotEmpty(message = "Weight cannot be empty")
+    private String weight;
+
     @OneToMany
     private List<MedicalHistory> medicalHistory;
 

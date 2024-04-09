@@ -10,6 +10,8 @@ public interface PatientServices {
 
     List<Patient> getAllPatients(Hospital hospital);
 
+    void validatePatient(String patientFullName);
+
     Patient addPatient(AddPatientRequest addPatientsRequest);
 
     Patient removePatient(RemovePatientRequest removePatientsRequest);

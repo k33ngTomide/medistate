@@ -3,15 +3,17 @@ package com.medistate.hospitalAdmin.services;
 import com.medistate.dtos.request.LoginAdminRequest;
 import com.medistate.dtos.response.AddPatientResponse;
 import com.medistate.dtos.response.HospitalAdminRespond;
-import com.medistate.exceptions.AdminExistException;
-import com.medistate.exceptions.HospitalNotFoundException;
-import com.medistate.exceptions.InvalidCredentialsException;
+import com.medistate.exceptions.*;
 import com.medistate.hopsital.data.model.Hospital;
 import com.medistate.hopsital.data.repositories.HospitalRepository;
 import com.medistate.hospitalAdmin.data.models.HospitalAdmin;
 import com.medistate.dtos.request.AddHospitalAdminRequest;
 import com.medistate.dtos.request.AddPatientRequest;
 import com.medistate.hospitalAdmin.data.repositories.HospitalAdminRepository;
+import com.medistate.patient.data.models.Patient;
+import com.medistate.patient.data.repositories.PatientRepository;
+import com.medistate.patient.services.PatientServices;
+import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,11 +24,15 @@ import static com.medistate.utils.Mapper.map;
 @AllArgsConstructor
 public class HospitalAdminServiceImpl  implements HospitalAdminService{
 
+    private final PatientServices patientService;
+
     private HospitalAdminRepository hospitalAdminRepository;
 
     private HospitalRepository hospitalRepository;
 
     private PasswordEncoder passwordEncoder;
+
+    private HttpSession httpSession;
 
     @Override
     public  HospitalAdminRespond  registerHospitalAdmin
@@ -62,9 +68,28 @@ public class HospitalAdminServiceImpl  implements HospitalAdminService{
 
 
     @Override
-    public AddPatientResponse registerPatient(AddPatientRequest addPatientRequest) {
-        return null;
+    public AddPatientResponse registerPatient(AddPatientRequest addPatientRequest,HospitalAdmin admin) {
+//
+//        if (httpSession.getAttribute("loggedInAdmin") == null || !httpSession.getAttribute("loggedInAdmin")
+//                .equals(admin.getId())) {
+//            throw new NotLoggedInException("Admin is not logged in");
+//        }
+
+        patientService.validatePatient(addPatientRequest.getFullName());
+        map(addPatientRequest, admin);
+        patientService.addPatient(addPatientRequest);
+        hospitalAdminRepository.save(admin);
+
+
+//        a method that sends an email to the patient to verify their email address
+//        and set up password for the patient access the account
+
+
+
+        return registrationMessageForPatient();
+
     }
+
 
 
     private void validateAdminName(String HospitalAdmin)  {
@@ -87,6 +112,14 @@ public class HospitalAdminServiceImpl  implements HospitalAdminService{
 //        hospitalAdminRespond.setMessage(String.format("Dear %s is now an admin of %s. Kindly check your email to validate your account.",
 //                addHospitalAdminRequest.getAdminName(), hospital.getHospitalName()));
         return  hospitalAdminRespond;
+    }
+
+    private AddPatientResponse registrationMessageForPatient() {
+        AddPatientResponse addPatientResponse = new AddPatientResponse();
+        addPatientResponse.setStatus("OK");
+        addPatientResponse.setMessage("Patient Added Successfully");
+
+        return addPatientResponse;
     }
 
 }
